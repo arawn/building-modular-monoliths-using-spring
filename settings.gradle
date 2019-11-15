@@ -1,0 +1,3 @@
+rootProject.name = 'building-modular-monoliths-using-spring'
+
+include 'modular-monoliths'
