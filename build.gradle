@@ -61,10 +61,57 @@ subprojects {
     }
 }
 
+project(':commons') {
+    dependencies {
+        compile 'org.springframework:spring-context'
+        compile 'org.springframework:spring-context-support'
+    }
+}
+
+project(':catalogs') {
+    dependencies {
+        compile project(':commons')
+
+        implementation 'org.springframework:spring-webmvc'
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+}
+
+project(':orders') {
+    dependencies {
+        compile project(':commons')
+
+        implementation 'org.springframework:spring-webmvc'
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+}
+
+project(':shipments') {
+    dependencies {
+        compile project(':commons')
+
+        implementation 'org.springframework:spring-webmvc'
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+}
+
 project(':modular-monoliths') {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
+        compile project(':catalogs')
+        compile project(':orders')
+        compile project(':shipments')
+
         implementation 'org.springframework.boot:spring-boot-starter-web'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

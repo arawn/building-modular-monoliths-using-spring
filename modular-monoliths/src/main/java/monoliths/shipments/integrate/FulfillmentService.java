@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @AllArgsConstructor
 @Component
-public class FulfillmentService implements DistributionCenter {
+class FulfillmentService implements DistributionCenter {
 
     private Inventory inventory;
 

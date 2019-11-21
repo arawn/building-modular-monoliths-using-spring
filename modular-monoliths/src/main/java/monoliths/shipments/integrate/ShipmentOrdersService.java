@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @Component
-public class ShipmentOrdersService implements ShippingDesk {
+class ShipmentOrdersService implements ShippingDesk {
 
     private DeliveryProcessing deliveryProcessing;
 

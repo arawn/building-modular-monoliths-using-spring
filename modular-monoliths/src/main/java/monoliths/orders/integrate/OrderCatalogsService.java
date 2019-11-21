@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Component
-public class OrderCatalogsService implements OrderProductMapper {
+class OrderCatalogsService implements OrderProductMapper {
 
     private Catalogs catalogs;
 
