@@ -1,12 +1,1 @@
 debug: true
-
-monoliths:
-  catalogs:
-    info:
-      name: 'Catalog Module'
-  orders:
-    info:
-      name: 'Order Module'
-  shipments:
-    info:
-      name: 'Shipment Module'

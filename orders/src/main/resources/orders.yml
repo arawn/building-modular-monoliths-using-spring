@@ -1,0 +1,4 @@
+monoliths:
+  orders:
+    info:
+      name: 'Order Module'

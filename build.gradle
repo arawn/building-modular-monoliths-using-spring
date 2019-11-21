@@ -73,6 +73,7 @@ project(':catalogs') {
         compile project(':commons')
 
         implementation 'org.springframework:spring-webmvc'
+        implementation 'org.springframework.boot:spring-boot-autoconfigure'
 
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -85,6 +86,7 @@ project(':orders') {
         compile project(':commons')
 
         implementation 'org.springframework:spring-webmvc'
+        implementation 'org.springframework.boot:spring-boot-autoconfigure'
 
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -97,6 +99,7 @@ project(':shipments') {
         compile project(':commons')
 
         implementation 'org.springframework:spring-webmvc'
+        implementation 'org.springframework.boot:spring-boot-autoconfigure'
 
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

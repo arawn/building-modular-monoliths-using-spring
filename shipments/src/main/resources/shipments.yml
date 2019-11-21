@@ -1,0 +1,4 @@
+monoliths:
+  shipments:
+    info:
+      name: 'Shipment Module'

@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 public class ModularMonolithsApplication {
 
+    public static final String PROPS_CONFIG_NAME = "spring.config.name: application, catalogs, orders, shipments";
+
     @Configuration
     @EnableAutoConfiguration
     static class WebContextConfiguration {
@@ -22,6 +24,7 @@ public class ModularMonolithsApplication {
 
     public static void main(String[] args) {
         SpringApplication  application = new SpringApplicationBuilder()
+                .properties(PROPS_CONFIG_NAME)
                 .sources(ModularMonolithsApplication.class).web(WebApplicationType.NONE)
                 .child(CatalogContextConfiguration.class).web(WebApplicationType.NONE)
                 .sibling(ShipmentContextConfiguration.class).web(WebApplicationType.NONE)

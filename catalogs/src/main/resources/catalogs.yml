@@ -1,0 +1,4 @@
+monoliths:
+  catalogs:
+    info:
+      name: 'Catalog Module'
