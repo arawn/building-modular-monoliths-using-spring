@@ -5,7 +5,6 @@ buildscript {
     }
 
     repositories {
-        maven { url 'http://repo.spring.io/plugins-release' }
         maven { url "https://plugins.gradle.org/m2/" }
         mavenCentral()
     }
@@ -78,6 +77,7 @@ project(':catalogs') {
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
+        testImplementation('org.springframework.boot:spring-boot-starter-web')
     }
 }
 
@@ -104,6 +104,21 @@ project(':shipments') {
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
+    }
+}
+
+project(':catalogs-service') {
+    apply plugin: 'org.springframework.boot'
+
+    dependencies {
+        compile project(':catalogs')
+
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+        
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
     }
 }
 

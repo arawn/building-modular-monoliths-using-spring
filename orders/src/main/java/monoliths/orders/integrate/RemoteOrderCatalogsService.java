@@ -3,21 +3,18 @@ package monoliths.orders.integrate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Component;
-
 import lombok.AllArgsConstructor;
-import monoliths.catalogs.domain.entity.Product;
-import monoliths.catalogs.domain.usecase.Catalogs;
 import monoliths.commons.model.OrderSheet;
 import monoliths.orders.domain.entity.OrderProduct;
 import monoliths.orders.domain.entity.OrderProductItem;
 import monoliths.orders.domain.entity.OrderProductMapper;
+import monoliths.orders.integrate.catalogs.Product;
+import monoliths.orders.integrate.catalogs.ProductRepository;
 
 @AllArgsConstructor
-@Component
-class OrderCatalogsService implements OrderProductMapper {
+public class RemoteOrderCatalogsService implements OrderProductMapper {
 
-    private Catalogs catalogs;
+    private ProductRepository productRepository;
 
     @Override
     public List<OrderProduct> mapFrom(List<OrderSheet.OrderSheetItem> orderSheetItems) {
@@ -28,21 +25,21 @@ class OrderCatalogsService implements OrderProductMapper {
                                     .productItemId(productItem.getId())
                                     .productItemName(productItem.getName())
                                     .productItemPrice(productItem.getPrice())
-                                    .productItemSkuId(productItem.getSku().getId())
+                                    .productItemSkuId(productItem.getSkuId())
                                     .build()).collect(Collectors.toList());
 
             return OrderProduct.builder()
                                .productId(product.getId())
                                .productName(product.getName())
                                .productItems(productItems)
-                               .price(product.calculatePrice())
+                               .price(product.getPrice())
                                .quantity(orderSheetItem.getQuantity())
                                .build();
         }).collect(Collectors.toList());
     }
 
     private Product getProductFor(OrderSheet.OrderSheetItem item) {
-        return catalogs.getProduct(item.getProductId());
+        return productRepository.getProduct(item.getProductId());
     }
 
 }

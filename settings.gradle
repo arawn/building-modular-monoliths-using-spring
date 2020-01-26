@@ -2,4 +2,4 @@ rootProject.name = 'building-modular-monoliths-using-spring'
 
 include 'commons'
 include 'catalogs', 'orders', 'shipments'
-include 'modular-monoliths'
+include 'modular-monoliths', 'catalogs-service'

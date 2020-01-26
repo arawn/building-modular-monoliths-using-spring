@@ -1,20 +1,21 @@
 package monoliths.catalogs.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
-
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+
 @Data
 @Setter(AccessLevel.PRIVATE)
 @EqualsAndHashCode(of = "id")
-public class Product {
+public class Product implements Serializable {
 
     private UUID id;
 

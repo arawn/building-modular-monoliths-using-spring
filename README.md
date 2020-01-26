@@ -1,6 +1,6 @@
 # Building modular monoliths using spring
 
-마이크로서비스 스타일로 만들어진 시스템을 모노리틱 스타일로 이관한 사례와 함께 스프링을 이용해 모듈형 모노리스(modular monoliths)를 만든 경험을 바탕으로 모노리틱/마이크로서비스 보다 본질적인 문제를 제기하고, 문제 해결을 위한 아이디어와 코드를 공유합니다. [슬라이드(slide)](https://www.slideshare.net/arawnkr/ss-195979955)는 외부에 공개되어 있습니다.
+마이크로서비스 스타일로 만들어진 시스템을 모노리틱 스타일로 이관한 사례와 함께 스프링을 이용해 모듈형 모노리스(modular monoliths)를 만든 경험을 바탕으로 모노리틱/마이크로서비스 보다 본질적인 문제를 제기하고, 문제 해결을 위한 아이디어와 코드를 공유합니다. [슬라이드(slide)](https://www.slideshare.net/arawnkr/ss-224478403)는 슬라이드셰어(SlideShare)에 공개되어 있습니다.
 
 ## 문제
 
@@ -43,10 +43,9 @@
 
 * step_1: modularization - 도메인 중심 모듈화와 모듈간 의존성 관리
 * step_2: encapsulation and separately - 모듈을 보호하고, 모듈간 의존성 분리 
-* step_3: context boundaries - 모듈 독립성을 돕는 컨텍스트 경계
+* step_3: context boundaries - 모듈 자율성을 지키는 컨텍스트 경계
 * step_4: modularizing configurations  - 컨텍스트 환경 모듈화
-
-조만간 컨텍스트를 별도 서비스로 분리, 마이크로서비스 아키텍처 스타일로 확장하는 단계를 추가할 예정이다.
+* step_5: decomposing system and stand alone services - 시스템 분리와 독립적인 서비스로 성장
 
 ## 마무리
 

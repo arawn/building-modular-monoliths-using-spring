@@ -1,11 +1,22 @@
 package monoliths;
 
-import monoliths.catalogs.CatalogContextConfiguration;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.UUID;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
 import monoliths.catalogs.CatalogFixtures;
-import monoliths.catalogs.domain.entity.CategoryRepository;
 import monoliths.catalogs.domain.entity.Product;
-import monoliths.catalogs.domain.entity.ProductRepository;
-import monoliths.catalogs.domain.entity.SkuRepository;
 import monoliths.catalogs.domain.usecase.Catalogs;
 import monoliths.catalogs.domain.usecase.Inventory;
 import monoliths.commons.model.DeliveryLocation;
@@ -21,34 +32,23 @@ import monoliths.shipments.ShipmentContextConfiguration;
 import monoliths.shipments.domain.entity.Delivery;
 import monoliths.shipments.domain.entity.DeliveryStatus;
 import monoliths.shipments.domain.usecase.Deliveries;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(classes = {
         CustomerBuyingFlowIntegrationTests.CustomerBuyingFlowIntegrationTestConfiguration.class
 })
 class CustomerBuyingFlowIntegrationTests {
 
-    @Autowired Catalogs catalogs;
-    @Autowired Inventory inventory;
+    @MockBean Catalogs catalogs;
+    @MockBean Inventory inventory;
+
     @Autowired Orders orders;
     @Autowired OrderProcessing orderProcessing;
     @Autowired Deliveries deliveries;
 
     @Test
     void simple() {
-        Product product = catalogs.getProductByCode(CatalogFixtures.SIMPLE_PRODUCT_CODE);
+        Product product = CatalogFixtures.product();
+        Mockito.when(catalogs.getProduct(product.getId())).thenReturn(product);
 
         OrderSheet orderSheet = OrderSheet.builder()
                 .customerId(UUID.randomUUID())
@@ -81,13 +81,8 @@ class CustomerBuyingFlowIntegrationTests {
     }
 
     @Configuration
-    @Import({ CatalogContextConfiguration.class, OrderContextConfiguration.class, ShipmentContextConfiguration.class })
+    @Import({ OrderContextConfiguration.class, ShipmentContextConfiguration.class })
     static class CustomerBuyingFlowIntegrationTestConfiguration {
-
-        @Bean
-        CatalogFixtures catalogFixtures(CategoryRepository categoryRepository, ProductRepository productRepository, SkuRepository skuRepository) {
-            return new CatalogFixtures(categoryRepository, productRepository, skuRepository);
-        }
 
     }
 

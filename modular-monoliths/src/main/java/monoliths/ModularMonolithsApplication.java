@@ -1,8 +1,5 @@
 package monoliths;
 
-import monoliths.catalogs.CatalogContextConfiguration;
-import monoliths.orders.OrderContextConfiguration;
-import monoliths.shipments.ShipmentContextConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.WebApplicationType;
@@ -10,11 +7,15 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Configuration;
 
+import monoliths.catalogs.CatalogContextConfiguration;
+import monoliths.orders.OrderContextConfiguration;
+import monoliths.shipments.ShipmentContextConfiguration;
+
 @SpringBootConfiguration
 @EnableAutoConfiguration
 public class ModularMonolithsApplication {
 
-    public static final String PROPS_CONFIG_NAME = "spring.config.name: application, catalogs, orders, shipments";
+    public static final String PROPS_CONFIG_NAME = "spring.config.name: application, orders, shipments";
 
     @Configuration
     @EnableAutoConfiguration
